@@ -1,0 +1,17 @@
+<div class="shadowedBox">
+	<div class="panel-heading">
+		<span style="color: #aaa;">${{post.id}}</span> ${{post.title}}
+	</div>
+	<div class="panel-body">
+		<div
+			style="border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 10px;">
+			${{post.description}}
+		</div>
+		<div>
+			Tags:
+			<!-- ngRepeat: tag in post.tags -->
+			${{post.tags}}
+			<!-- end ngRepeat: tag in post.tags -->
+		</div>
+	</div>
+</div>

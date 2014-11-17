@@ -1,0 +1,17 @@
+
+<div ng-controller="TagController" class="col-md-10 col-md-offset-1">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div >
+				<div class="panel panel-default" ng-repeat="tag in tags">
+					<div class="panel-heading">
+						Tag: {{tag.tagName}} 
+					</div>
+					<div class="panel-body">
+						Popularity: {{tag.popularity}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="PostsApp">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Posts App</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	
+	<script type="text/javascript" src="ext/angular.min.js"></script>
+	<script type="text/javascript" src="ext/angular-route.js"></script>
+	<script type="text/javascript" src="ext/angular-animate.js"></script>
+	<script type="text/javascript" src="main/app.js"></script>
+	
+	<script type="text/javascript" src="services/WebServices.js"></script>
+	
+	<script type="text/javascript" src="controller/postController.js"></script>
+	<script type="text/javascript" src="controller/tagController.js"></script>
+</head>
+<body>
+	<div class="page-header">
+	  <h1>Posts Application <small>&nbsp; Search all post in our Database</small></h1>
+	</div>
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="#/posts">Posts</a></li>
+	        <li><a href="#/tags">Tags</a></li>
+	      </ul>
+        </div>
+	</nav>
+	
+	<div ng-view >
+	</div>
+	
+</body>
+
+
+
+</html>
