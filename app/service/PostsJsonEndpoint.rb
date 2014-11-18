@@ -27,17 +27,12 @@ get '/ws/posts/tag/:tag' do
 end
 get '/ws/posts/author/:author' do
   posts = PostDB.instance.getPostsByAuthor(params[:author]);
-  ret = HtmlProvider.GetHtml("index")
-  hPosts = "";
+  ret = "["
   posts.each { |post|
-    tPost = HtmlProvider.GetHtml("singlePost");
-    tPost.gsub("${{post.id}}" , post.id.to_s)
-    tPost.gsub("${{post.title}}" , post.id.to_s)
-    tPost.gsub("${{post.description}}" , post.description[0..9])
-    tPost.gsub("${{post.tags}}" , post.tags.join(', '))
-    hPost += tPost;
+    if(ret != "["); ret += "," end
+    ret += post.to_json
   }
-  ret.gsub("${{BODY}}" , hPosts);
+  ret += "]"
   return ret
 end
 get '/ws/tags/' do
