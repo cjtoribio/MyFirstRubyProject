@@ -1,9 +1,29 @@
+require 'app/util/Configuration.rb'
+require 'app/util/JsonFileToMapConverter.rb'
+require 'app/model/Post.rb'
+
 class PostDB
+  
+     
 	def initialize()
 		@postById = {}
 		@postByTags = {}
 		@postByAuthor = {}
-		@tagsPopilarity = {}
+		@@instance = self    
+	end
+	
+	def PostDB.instance
+	  return @@instance
+	end
+	  
+	
+	def start()
+    fileProcessor = JsonFileToMapConverter.new(Configuration::JSONFILE)
+    posts1 = fileProcessor.process()["posts"]
+    posts = Array.new()
+    posts1.each { |postMap|
+      self.addPost(Post.fromMap(postMap))
+    }
 	end
 
 	def addPost(post)
@@ -11,10 +31,8 @@ class PostDB
 		post.tags.each{ |tag|
 			if @postByTags[tag] == nil
 				@postByTags[tag] = Array.new
-				@tagsPopilarity[tag] = 0
 			end
 			@postByTags[tag].push(post)
-			@tagsPopilarity[tag] += 1
 		}
 		if @postByAuthor[post.author] == nil
 			@postByAuthor[post.author] = Array.new
@@ -43,6 +61,10 @@ class PostDB
 	end
 
 	def getAllTags()
-		return @tagsPopilarity
+	  ret = {}
+	  for key in @postByTags.keys()
+	    ret[key] = @postByTags[key].size()
+	  end
+	  return ret
 	end
 end
