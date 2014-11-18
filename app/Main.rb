@@ -92,7 +92,7 @@ get '/html/posts/author/:author' do
 end
 get '/html/tags/' do
 	tags = db.getAllTags();
-	ret = HtmlProvider.GetHtml("tags")
+	ret = HtmlProvider.GetHtml("index")
 	body = "";
 	tags.each do |key , value|
 		body += "<div class='property'>TagName: #{key}</div><div class='value'>Popularity: #{value}</div>"
